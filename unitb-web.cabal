@@ -1,4 +1,4 @@
-name:              web-prover
+name:              unitb-web
 version:           0.0.0
 license:           MIT
 license-file:      LICENSE
@@ -98,13 +98,13 @@ library
                  , filepath
                  , printf-th
 
-executable         web-prover
+executable         unitb-web
     if flag(library-only)
         Buildable: False
 
     main-is:           main.hs
     hs-source-dirs:    app
-    build-depends:     base, web-prover
+    build-depends:     base, unitb-web
 
     ghc-options:       -threaded -rtsopts -with-rtsopts=-N
 
@@ -138,7 +138,7 @@ test-suite test
                 TupleSections
 
     build-depends: base
-                 , web-prover
+                 , unitb-web
                  , yesod-test >= 1.5.0.1 && < 1.6
                  , yesod-core
                  , yesod

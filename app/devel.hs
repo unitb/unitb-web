@@ -1,5 +1,5 @@
 {-# LANGUAGE PackageImports #-}
-import "web-prover" Application (develMain)
+import "unitb-web" Application (develMain)
 import Prelude (IO)
 
 main :: IO ()
