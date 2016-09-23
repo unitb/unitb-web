@@ -4,6 +4,7 @@ license:           MIT
 license-file:      LICENSE
 author:            Amin Bandali
 maintainer:        amin@aminb.org
+copyright:         2016 Amin Bandali, Software Engineering Lab, York University
 cabal-version:     >= 1.8
 build-type:        Simple
 
