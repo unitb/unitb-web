@@ -84,7 +84,7 @@ packages:
     commit: cfd83405a7573cfa458cb2b25f79565e14316e70
 - location:
     git: https://github.com/literate-unitb/literate-unitb-logic.git
-    commit: 7f68db17bde27748500f24895bf44f4e4ee7d080
+    commit: 1e38920e6ed760b6b87bd0b0decb50fea7ae9599
 - location:
     git: https://github.com/literate-unitb/tex2png-hs.git
     commit: 099a17b1c8a71b287e5acdfea110db869a5cef4b
