@@ -4,8 +4,9 @@ license:           MIT
 license-file:      LICENSE
 author:            Amin Bandali
 maintainer:        amin@aminb.org
-synopsis:          Web site using the Literate Unit-B predicate prover
-description:       Web site using the Literate Unit-B predicate prover
+synopsis:          Web interface using Literate Unit-B predicate prover
+description:       Unit-B Web is a web interface using the logic module of
+                   Literate Unit-B for doing predicate calculus proofs.
 category:          Math
 copyright:         2016 Amin Bandali, Software Engineering Lab, York University
 cabal-version:     >= 1.8
