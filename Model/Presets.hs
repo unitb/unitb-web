@@ -1,6 +1,6 @@
 module Model.Presets where
 
-import ClassyPrelude.Yesod hiding (fromList)
+import ClassyPrelude.Yesod hiding (fromList,throw)
 import Control.Exception   (throw)
 import Data.Aeson          (Result (..), fromJSON, withObject)
 import Data.FileEmbed      (embedFile)
@@ -41,14 +41,14 @@ presets =
         Error e -> error e
         Success ps -> ps
 
-presetItemMap :: (FromJSON a, ToJSON a) => [PresetItem a] -> IntMap (PresetItem a)
+presetItemMap :: [PresetItem a] -> IntMap (PresetItem a)
 presetItemMap pis = fromList [(i, presetItem {piid = i}) | (i, presetItem) <- pis']
     where pis' = zip [0..] pis
 
-presetToPresetMap :: (FromJSON a, ToJSON a) => Int -> Preset a -> PresetMap a
+presetToPresetMap :: Int -> Preset a -> PresetMap a
 presetToPresetMap i p = PresetMap { pmid = i, name = pname p, items = presetItemMap $ pitems p }
 
-presetMaps :: (FromJSON a, ToJSON a) => [Preset a] -> IntMap (PresetMap a)
+presetMaps :: [Preset a] -> IntMap (PresetMap a)
 presetMaps ps = fromList [(i, presetToPresetMap i preset) | (i, preset) <- ps']
     where ps' = zip [0..] ps
 

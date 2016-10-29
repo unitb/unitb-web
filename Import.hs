@@ -1,6 +1,7 @@
 module Import
-    ( module Import
+    ( module Foundation
+    , module NoFoundation
     ) where
 
-import Foundation            as Import
-import Import.NoFoundation   as Import
+import Foundation            
+import Import.NoFoundation   as NoFoundation hiding (Handler)

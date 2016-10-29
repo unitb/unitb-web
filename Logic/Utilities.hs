@@ -18,14 +18,14 @@ varDecl :: Var -> String
 varDecl v = render (v^.name) ++ fromMaybe "" (isMember $ type_of v)
 
 withParenth :: Bool -> String -> String
-withParenth True  = [printf|(%s)|]
+withParenth True  = [s|(%s)|]
 withParenth False = id
 
 isMember :: Type -> Maybe String
 isMember t = join (preview (_FromSort.to f) t) <|> ((" \\in " ++) <$> typeToSet False t)
    where
        f (DefSort n _ _ _,ts)
-           | n == [tex|\set|] = [printf| \\subseteq %s|] <$> typeToSet False (ts !! 0)
+           | n == [tex|\set|] = [s| \\subseteq %s|] <$> typeToSet False (ts !! 0)
        f _ = Nothing
 
 
@@ -33,14 +33,14 @@ typeToSet :: Bool -> Type -> Maybe String
 typeToSet paren = join . preview (_FromSort.to f)
    where
        f (DefSort n _ _ _,ts)
-           | n == [tex|\set|] = withParenth paren . [printf|\\pow.%s|] <$> typeToSet True (ts !! 0)
+           | n == [tex|\set|] = withParenth paren . [s|\\pow.%s|] <$> typeToSet True (ts !! 0)
            | n == [tex|\pfun|] = withParenth paren <$>
-                                   liftM2 [printf|%s \\pfun %s|]
+                                   liftM2 [s|%s \\pfun %s|]
                                        (typeToSet True (ts !! 0))
                                        (typeToSet True (ts !! 1))
        f (Sort n _ _,_)
            | otherwise  = Just (render n)
-       f (IntSort,[]) = Just [printf|\\mathbb{Z}|]
-       f (RealSort,[]) = Just [printf|\\mathbb{R}|]
-       f (BoolSort,[]) = Just [printf|\\textbf{Bool}|]
+       f (IntSort,[]) = Just [s|\\mathbb{Z}|]
+       f (RealSort,[]) = Just [s|\\mathbb{R}|]
+       f (BoolSort,[]) = Just [s|\\textbf{Bool}|]
        f _ = Nothing

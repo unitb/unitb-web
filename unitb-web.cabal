@@ -4,9 +4,16 @@ license:           MIT
 license-file:      LICENSE
 author:            Amin Bandali
 maintainer:        amin@aminb.org
+synopsis:          Web site using the Literate Unit-B predicate prover
+description:       Web site using the Literate Unit-B predicate prover
+category:          Math
 copyright:         2016 Amin Bandali, Software Engineering Lab, York University
 cabal-version:     >= 1.8
 build-type:        Simple
+
+source-repository head
+  type:     git
+  location: https://github.com/literate-unitb/unitb-web
 
 Flag dev
     Description:   Turn on development settings, like auto-reload templates.
@@ -94,10 +101,11 @@ library
                  , lens
                  , literate-unitb-logic
                  , literate-unitb-utils
-                 , invariants
+                 , control-invariants
                  , tex2png-hs
                  , filepath
-                 , printf-th
+                 , th-printf
+                 , syntax-error
 
 executable         unitb-web
     if flag(library-only)
