@@ -1,14 +1,17 @@
 module TestImport
     ( module TestImport
-    , module X
+    , module ClassyPrelude
+    , module Foundation
+    , module Test.Hspec
+    , module Yesod.Test
     ) where
 
 import Application           (makeFoundation, makeLogWare)
-import ClassyPrelude         as X
-import Foundation            as X
-import Test.Hspec            as X
+import ClassyPrelude hiding  (Handler)
+import Foundation            
+import Test.Hspec            
 import Yesod.Default.Config2 (ignoreEnv, loadYamlSettings)
-import Yesod.Test            as X
+import Yesod.Test            
 
 withApp :: SpecWith (TestApp App) -> Spec
 withApp = before $ do

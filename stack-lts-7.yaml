@@ -54,24 +54,14 @@ packages:
     git: https://github.com/literate-unitb/tex2png-hs.git
     commit: 099a17b1c8a71b287e5acdfea110db869a5cef4b
 extra-deps:
+- existential-0.2.0.0
 - assert-0.0.1.2
 - axiomatic-classes-0.1.0.0
 - cereal-text-0.1.0.2
 - control-invariants-0.1.0.0
-- existential-0.2.0.0
-- hspec-2.3.2
-- hspec-core-2.3.2
-- hspec-discover-2.3.2
-- hspec-expectations-0.8.2
 - portable-lines-0.1
 - portable-template-haskell-lens-0.1.0.0
 - pseudomacros-0.0.2
 - quickcheck-report-0.1.0.0
 - serialize-instances-0.1.0.0
-- wai-logger-2.2.7
-- aeson-0.11.2.1
-- call-stack-0.1.0
-- http-client-0.4.31.1
-- http-client-tls-0.2.4.1
-- http-conduit-2.1.11
 resolver: lts-7.5
