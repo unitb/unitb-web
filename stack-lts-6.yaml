@@ -87,7 +87,7 @@ packages:
     commit: 1e38920e6ed760b6b87bd0b0decb50fea7ae9599
 - location:
     git: https://github.com/literate-unitb/tex2png-hs.git
-    commit: 099a17b1c8a71b287e5acdfea110db869a5cef4b
+    commit: 9859bec9c95a111f0151a3b659e9e5707f565d09
 
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)

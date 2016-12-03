@@ -9,7 +9,7 @@ import           System.FilePath
 import           TeX2PNG
 import           Utilities.Syntactic (Error, show_err)
 
-import           Import
+import           Import hiding ((.=))
 import           Logic.Prover
 import           Logic.Utilities
 import           Model.ProofForm
@@ -20,11 +20,11 @@ postRenderR = do
   let staticSubDir = "img"
       imgDir = cur </> "static" </> staticSubDir
   content <- requireJsonBody :: Handler (Text)
-  path <- lift $ render (args content imgDir) mkPNG staticSubDir
+  path <- lift $ render (mkPNG (id .= args imgDir) content) staticSubDir
   returnJson path
   where
-    args c d = Args "transparent" c (Just d) 150 False True Nothing 1 packages Nothing True
-    packages = Just $ pack <$> ["bsymb", "eventB", "unitb", "calculational"]
+    args d = Args SimplyTransparent (Just d) 150 False True Nothing 1 packages Nothing True
+    packages = pack <$> ["bsymb", "eventB", "unitb", "calculational"]
 
 
 postFormPngR :: Handler Value
@@ -41,18 +41,18 @@ postFormPdfR = do
 
 
 renderForm :: ProofForm Text
-           -> (Args -> IO (Either Text FilePath))
+           -> (OptArgs () -> Text -> IO (Either Text FilePath))
            -> Bool
            -> FilePath
            -> IO FilePath
 renderForm proofForm fun tightness staticSubDir = do
   cur <- getCurrentDirectory  -- project root
   let imgDir = cur </> "static" </> staticSubDir
-  path <- render (args (getLatex proofForm) imgDir tightness) fun staticSubDir
+  path <- render (fun (id .= args imgDir tightness) (getLatex proofForm)) staticSubDir
   return path
   where
-    args c d t = Args "transparent" c (Just d) 150 False True Nothing 1 packages Nothing t
-    packages = Just $ pack <$> ["bsymb", "eventB", "unitb", "calculational"]
+    args d t = Args SimplyTransparent (Just d) 150 False True Nothing 1 packages Nothing t
+    packages = pack <$> ["bsymb", "eventB", "unitb", "calculational"]
     getLatex :: ProofForm Text -> Text
     getLatex form = intercalate "\n"
                     [ begin
@@ -121,12 +121,11 @@ renderForm proofForm fun tightness staticSubDir = do
                               ["& ", asm, " & \\textsf{(", pack lbl, ")}"]
 
 
-render :: Args
-       -> (Args -> IO (Either Text FilePath))
+render :: IO (Either Text FilePath)
        -> FilePath
        -> IO FilePath
-render args f outputDir = do
+render cmd outputDir = do
   let outPath = "static" </> outputDir
-  file <- f args
+  file <- cmd
   let fileFullPath = either unpack id file
   return $ outPath </> (takeFileName fileFullPath)
