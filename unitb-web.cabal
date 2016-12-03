@@ -14,7 +14,7 @@ build-type:        Simple
 
 source-repository head
   type:     git
-  location: https://github.com/literate-unitb/unitb-web
+  location: https://github.com/unitb/unitb-web
 
 Flag dev
     Description:   Turn on development settings, like auto-reload templates.
