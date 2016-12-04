@@ -52,7 +52,7 @@ packages:
     commit: 7f68db17bde27748500f24895bf44f4e4ee7d080
 - location:
     git: https://github.com/literate-unitb/tex2png-hs.git
-    commit: 9859bec9c95a111f0151a3b659e9e5707f565d09
+    commit: 234db307ab956ddde3ad75049452884cfd415091
 extra-deps:
 - aeson-compat-0.3.6
 - assert-0.0.1.2
